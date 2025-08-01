@@ -7,7 +7,7 @@ dependencies = [
     "dagster-pipes",
     "dagster-shared",
     "dagster-cloud",
-    "dagster-dg-cli",
+    "dagster-embedded-elt>=0.27.4",
 ]
 
 [dependency-groups]
@@ -31,3 +31,6 @@ root_module = "scaffold_branch_demo"
 registry_modules = [
     "scaffold_branch_demo.components.*",
 ]
+
+[tool.uv.sources]
+dagster-dg-cli = { path = '/Users/ben/repos/dagster/python_modules/libraries/dagster-dg-cli', editable = true }
