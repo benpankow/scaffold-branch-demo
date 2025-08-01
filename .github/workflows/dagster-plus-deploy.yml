@@ -38,7 +38,7 @@ jobs:
       # Detect if this is branch deployment and initialize the build session
       - name: Initialize build session
         id: ci-init
-        uses: dagster-io/dagster-cloud-action/actions/utils/dg-deploy-init@main
+        uses: dagster-io/dagster-cloud-action/actions/utils/dg-deploy-init@v1.11.4
         with:
           project_dir: ${{ env.DAGSTER_PROJECT_DIR }}
           # A full deployment name. If this run is for a pull request, this value will be used as
@@ -62,7 +62,7 @@ jobs:
       - name: Run PEX build
         id: run-pex-build
         if: steps.prerun.outputs.result == 'pex-deploy'
-        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@main
+        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@v1.11.4
         with:
           command: "plus deploy build-and-push --agent-type=serverless --python-version ${{ env.PYTHON_VERSION }}"
 
@@ -74,7 +74,7 @@ jobs:
       - name: Run Docker build
         id: run-docker-build
         if: steps.prerun.outputs.result == 'docker-deploy'
-        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@main
+        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@v1.11.4
         with:
           command: "plus deploy build-and-push --agent-type=serverless --python-version ${{ env.PYTHON_VERSION }}"
 
@@ -82,7 +82,7 @@ jobs:
       - name: Deploy to Dagster Cloud
         id: ci-deploy
         if: steps.prerun.outputs.result != 'skip'
-        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@main
+        uses: dagster-io/dagster-cloud-action/actions/utils/dg-cli@v1.11.4
         with:
           command: "plus deploy finish"
 
